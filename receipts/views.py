@@ -1,3 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404, redirect
+from receipts.models import ExpenseCategory, Account, Receipt
 
-# Create your views here.
+
+def show_receipts(request):
+    receipts = Receipt.objects.all()
+    context = {
+        "receipts": receipts,
+    }
+    return render(request, "receipts/receipts.html", context)
